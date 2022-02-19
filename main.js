@@ -1,18 +1,60 @@
+img="";
+nosex=0;
+nosey=0;
+mariox=0;
+marioy=0;
+
 function preload() {
+	img=loadImage('mario05.png');
 	world_start = loadSound("world_start.wav");
 	setSprites();
 	MarioAnimation();
+	console.log("the sound");
 }
 
 function setup() {
-	canvas = createCanvas(1240,336);
-	canvas.parent('canvas');
+	canvas = createCanvas(1240,336); 
+	canvas.parent('canvas'); 
 	instializeInSetup(mario);
-	video=createCapture(VIDEO);
-	video.size(800,400);
+	video = createCapture(VIDEO); 
+	video.size(800,400); 
 	video.parent('game_console');
+
+	poseNet=ml5.poseNet(video,modelloaded);
+	poseNet.on('pose',gotPoses);
 }
 
-function draw() {
+function draw()
+    {
 	game();
+	background("blue");
+
+	if(nosex <300)
+	{
+		mariox=mariox -1;
+	}
+	if(nosex <300)
+	{
+		mariox=mariox + 1;
+	}
+	if(nosey < 150)
+	{
+		mariox=mariox - 1;
+	}
+	image(img,mariox,marioy,40,70);
+}
+
+function modelloaded() 
+{
+	console.log("modelloaded");
+}
+
+function gotPoses(result)
+{
+	if(result.length >0)
+	{
+		nosex=result[0].pose.nose.x;
+		nosey=result[0].pose.nose.y;
+		console.log("nosex = "+nosex+" ,nosey ="+nosey);
+	}
 }
