@@ -1,8 +1,8 @@
 img="";
 nosex=0;
 nosey=0;
-mariox=0;
-marioy=0;
+mariox=325;
+marioy=325;
 
 function preload() {
 	img=loadImage('mario05.png');
@@ -13,7 +13,7 @@ function preload() {
 }
 
 function setup() {
-	canvas = createCanvas(1240,336); 
+	canvas = createCanvas(650,336); 
 	canvas.parent('canvas'); 
 	instializeInSetup(mario);
 	video = createCapture(VIDEO); 
@@ -39,7 +39,7 @@ function draw()
 	}
 	if(nosey < 150)
 	{
-		mariox=mariox - 1;
+		marioy=marioy - 1;
 	}
 	image(img,mariox,marioy,40,70);
 }
@@ -53,8 +53,8 @@ function gotPoses(result)
 {
 	if(result.length >0)
 	{
-		nosex=result[0].pose.nose.x;
-		nosey=result[0].pose.nose.y;
+		nosex=results[0].pose.nose.x;
+		nosey=results[0].pose.nose.y;
 		console.log("nosex = "+nosex+" ,nosey ="+nosey);
 	}
 }
