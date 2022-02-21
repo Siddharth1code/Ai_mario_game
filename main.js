@@ -3,7 +3,13 @@ nosex=0;
 nosey=0;
 mariox=325;
 marioy=325;
+gameStatus="";
 
+function gameStart() 
+{
+	gameStatus="Start";
+	document.getElementById("status").innerHTML="Game is loading...";
+}
 function preload() {
 	img=loadImage('mario05.png');
 	world_start = loadSound("world_start.wav");
