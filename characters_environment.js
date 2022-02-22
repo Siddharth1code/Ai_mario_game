@@ -52,14 +52,6 @@ var gameConfig={
 /*====================================
 =            Game Status             =
 ====================================*/
-nosex=0;
-nosey=0;
-gameStatus="";
-function gameStart() 
-{
-	gameStatus="Start";
-	document.getElementById("status").innerHTML="Game is loading...";
-}
 
 function game(){
 
@@ -123,7 +115,7 @@ function game(){
 
 // change game status if any key is pressed
 function changeGameStatud(character){
-  if((keyDown(control.up) ||keyDown(control.left)||keyDown(control.right) )&& gameConfig.status==="start") {
+  if( gameConfig.status==="start" && mariox!="" && gameConfig.status=="start") {
     world_start.play();
     initializeCharacterStatus(mario);
     gameConfig.status= "play";
@@ -287,13 +279,13 @@ function autoControl(character){
 function manualControl(character){
   
   if(character.live){
-    if(keyDown(control.left)){
+    if(nosex<300){
       character.velocity.x-=gameConfig.moveSpeed;
       character.changeAnimation('move');
       character.mirrorX(-1);
     }
 
-    if(keyDown(control.right)){
+    if(nosy>300){
       character.velocity.x+=gameConfig.moveSpeed;
       character.changeAnimation('move');
       character.mirrorX(1);
@@ -308,7 +300,7 @@ function manualControl(character){
 
 /* Movements of character */
 function jumping(character){
-	if( (keyWentDown(control.up)&&character.live) || (touchIsDown&&character.live) ){
+	if( (nosey<200&&character.live) || (touchIsDown&&character.live) ){
 		character.velocity.y+=gameConfig.jump;
 	}
 }

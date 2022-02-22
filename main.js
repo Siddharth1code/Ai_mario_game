@@ -4,12 +4,7 @@ nosey=0;
 mariox=325;
 marioy=325;
 gameStatus="";
-
-function gameStart() 
-{
-	gameStatus="Start";
-	document.getElementById("status").innerHTML="Game is loading...";
-}
+world_start="";
 function preload() {
 	img=loadImage('mario05.png');
 	world_start = loadSound("world_start.wav");
@@ -63,4 +58,11 @@ function gotPoses(result)
 		nosey=results[0].pose.nose.y;
 		console.log("nosex = "+nosex+" ,nosey ="+nosey);
 	}
+}
+
+function world_start()
+{
+	world_start= loadSound("world_start.wav");
+	setSprites();
+	marioAnimation();
 }
