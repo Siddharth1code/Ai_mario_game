@@ -6,6 +6,13 @@ marioy=325;
 gameStatus="";
 world_start="";
 function preload() {
+	mario_world= loadSound('world_start.wav');
+	mario_jump=loadSound('jump.wav');
+	mario_gameover=loadSound('gameover.wav');
+	mario_coin=loadSound('coin.wav');
+	mario_die=loadSound('mariodie.wav');
+	mario_kick=loadSound('kick.wav');
+
 	img=loadImage('mario05.png');
 	world_start = loadSound("world_start.wav");
 	setSprites();
